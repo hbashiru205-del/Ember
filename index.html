@@ -1,32 +1,38 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ember - Chat rooms</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ember</title>
 <style>
-:root{--bg:#1d1022;--card:#2a1830;--line:#432b4a;--ink:#f6ecf4;--mut:#a893a8;--hot:#ff8a6b;--gold:#f4c66a}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,sans-serif}
-#app{max-width:520px;margin:auto;min-height:100vh;display:flex;flex-direction:column}
-header{padding:14px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);font-weight:700;font-size:18px}
-header span{flex:1}header button{background:none;border:0;color:var(--gold);font:inherit}
-main{flex:1;padding:12px 16px 90px}
-nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:flex;background:var(--card);border-top:1px solid var(--line)}
-nav button{flex:1;padding:15px 0;background:none;border:0;color:var(--mut);font:inherit}nav .on{color:var(--gold);font-weight:700}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}
-.card h3{margin:0 0 2px;font-size:16px}small,.mut{color:var(--mut)}
-.pri{background:var(--hot);color:#2a0f10;border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:700}
-.sec{background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit}
-input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
-.msg{margin:8px 0}.msg b{color:var(--gold);cursor:pointer}.me{text-align:right}.me b{color:var(--hot)}
-.bar{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:flex;gap:8px;padding:10px;background:var(--card);border-top:1px solid var(--line)}
-.row{display:flex;gap:8px;align-items:center}.row>*:first-child{flex:1}
-.toast{position:fixed;top:12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#2a1b00;padding:9px 14px;border-radius:10px;font-weight:600;z-index:9;max-width:90%}
-.err{color:#ff8f8f}
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap');
+:root{--bg:#fdf8f3;--ink:#231a2a;--mut:#8b7f92;--ln:#efe6e0;--co:#ff6b5b;--mi:#2ec4a6;--li:#9b8cff;--su:#ffc83d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 'Baloo 2',system-ui,sans-serif}
+#app{max-width:520px;margin:auto;min-height:100vh}main{padding:14px 14px 90px}
+h1,h2{margin:0 0 8px;font-weight:800}small,.mut{color:var(--mut)}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:flex;background:#fff;border-top:1px solid var(--ln)}
+nav button{flex:1;padding:12px 0;background:none;border:0;font:inherit;color:var(--mut);font-weight:700}nav .on{color:var(--co)}
+.tiles{display:flex;gap:10px;margin-bottom:14px}.t{flex:1;height:84px;border:0;border-radius:20px;font:800 17px 'Baloo 2',system-ui;color:var(--ink);text-align:left;padding:12px}
+.y{background:var(--su)}.p{background:var(--li)}.g{background:var(--mi)}
+.tabs{display:flex;gap:16px;margin:4px 0 8px}.tabs button{background:none;border:0;font:800 19px 'Baloo 2',system-ui;color:#c4b9c9;padding:0}.tabs .on{color:var(--ink)}
+.pc{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--ln)}
+.av{position:relative;width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--ln);display:grid;place-items:center;font-size:28px;flex:none}
+.av i{position:absolute;right:0;bottom:2px;width:12px;height:12px;border-radius:50%;background:var(--mi);border:2px solid #fff}
+.pi{flex:1;min-width:0}.col{display:flex;flex-direction:column;gap:6px}
+.hi{background:var(--su);border:0;border-radius:20px;padding:6px 18px;font:800 16px 'Baloo 2',system-ui}.fo,.sec{background:#fff;border:1px solid var(--ln);border-radius:20px;padding:4px 12px;font:inherit;color:var(--ink)}
+.pri{background:var(--co);color:#fff;border:0;border-radius:14px;padding:10px 16px;font:800 16px 'Baloo 2',system-ui}
+input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--ln);background:#fff;font:inherit;color:var(--ink)}
+.card{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:12px;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center}.row>.grow{flex:1}
+.msg{margin:6px 0;display:flex}.msg.me{justify-content:flex-end}.msg span{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:8px 12px;max-width:80%}.msg.me span{background:var(--su);border-color:var(--su)}
+.bar{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;display:flex;gap:8px;padding:10px;background:#fff;border-top:1px solid var(--ln)}
+.top{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--ln);font-weight:800;font-size:18px}.top .grow{flex:1}.top button{background:none;border:0;font:inherit;color:var(--co);font-weight:700}
+.toast{position:fixed;top:10px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:9px 14px;border-radius:12px;z-index:9;max-width:90%;font-weight:600}
+.stats{display:flex;text-align:center;margin:12px 0}.stats div{flex:1;font-size:22px;font-weight:800}.stats small{display:block;font-size:13px;font-weight:500}
+.coin{background:var(--su);border-radius:18px;padding:14px;font-size:30px;font-weight:800}.err{color:#d33}
 </style></head><body><div id="app"></div>
 <script>
-const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const S={me:null,tab:'rooms',room:null,dm:null,sel:null,t:'',coins:5,claimed:false,blocked:new Set(),friends:new Set(),dms:{},
-rooms:[{id:1,name:'Night owls',topic:'Music, late talks',lang:'English',n:42,msgs:[['Amaka','Anyone up? Playing afrobeats.'],['Tunde','Always.']]},
-{id:2,name:'Language swap',topic:'Practice any language',lang:'Mixed',n:31,msgs:[['Mei','Hello! Anyone learning Mandarin?'],['Carlos','I can help with Spanish.']]},
-{id:3,name:'Campus life',topic:'Students worldwide',lang:'English',n:18,msgs:[['Fatima','Exams start next week, send help.']]}]};
-const people=['Amaka','Tunde','Mei','Carlos','Fatima'],lines=['Ha, true.','Where are you from?','Tell me more.','Good point.','Same here.'];
-const bad=t=>/[\w.+-]+\s*(@|\(at\))\s*[\w-]+\.\w{2,}|https?:\/\/|www\.|(\d[\s().-]*){7,}|(^|\s)@\w{3,}|whats\s*app|telegram|instagram|snap\s*chat/i.test(t);
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const P=[{n:'Ada',a:27,c:'Lagos',e:'🌸',on:1,b:'Music, jollof, long walks'},{n:'Wanjiru',a:25,c:'Nairobi',e:'🦋',on:1,b:'Practising my French'},{n:'Mika',a:24,c:'Manila',e:'🐼',on:0,b:'Gamer and coffee person'},{n:'Luiza',a:29,c:'Sao Paulo',e:'🌻',on:1,b:'Ask me about football'},{n:'Jonas',a:31,c:'Berlin',e:'🎧',on:0,b:'DJ on weekends'},{n:'Elif',a:26,c:'Istanbul',e:'🐱',on:1,b:'Cats, tea, travel'},{n:'Dewi',a:23,c:'Jakarta',e:'🍜',on:1,b:'New here, say hi'},{n:'Sam',a:30,c:'Toronto',e:'🚲',on:0,b:'Cycling and books'}];
+const S={me:null,tab:'home',h:'rec',chat:null,menu:0,t:'',coins:5,done:new Set(),blocked:new Set(),follow:new Set(),threads:{},
+mo:[{n:'Ada',t:'Sunday vibes in Lagos',l:12,k:0},{n:'Elif',t:'Found the best tea in Istanbul',l:7,k:0}]};
+const lines=['Hi! Where are you from?','Nice to meet you.','What do you do for fun?','Haha, same.','Tell me more.'];
+const bad=t=>/[\w.+-]+\s*(@|\(at\))\s*[\w-]+\.\w{2,}|https?:\/\/|www\.|(\d[\s().-]*){7,}|(^|\s)@\w{3,}|whats\s*app|telegram|instagram|snap\s*chat|wechat/i.test(t);
 let tt;const toast=m=>{S.t=m;render();clearTimeout(tt);tt=setTimeout(()=>{S.t='';render()},2200)};
 function start(){const n=$('#n').value.trim(),d=$('#d').value,e=$('#e');
  if(n.length<2)return e.textContent='Enter a name with at least 2 characters.';
@@ -34,36 +40,41 @@ function start(){const n=$('#n').value.trim(),d=$('#d').value,e=$('#e');
  const a=new Date();a.setFullYear(a.getFullYear()-18);
  if(new Date(d)>a)return e.textContent='You must be 18 or older to use Ember.';
  S.me=n;render()}
-const go=t=>{S.tab=t;S.room=null;S.dm=null;S.sel=null;render()};
-const openRoom=id=>{S.room=S.rooms.find(r=>r.id==id);S.sel=null;render()};
-function mk(){const n=$('#rn').value.trim();if(n.length<3)return toast('Room name needs 3+ characters.');
- if(S.rooms.filter(r=>r.mine).length>=3)return toast('Limit: 3 rooms per person.');
- S.rooms.unshift({id:Date.now(),name:n,topic:'New room',lang:'Any',n:1,mine:1,msgs:[]});toast('Room created.')}
-function say(list,who){setTimeout(()=>{const p=who||people.filter(x=>!S.blocked.has(x))[Math.floor(Math.random()*5)%Math.max(1,people.filter(x=>!S.blocked.has(x)).length)];
- if(!p||S.blocked.has(p))return;list.push([p,lines[Math.floor(Math.random()*lines.length)]]);render()},900)}
+const go=t=>{S.tab=t;S.chat=null;S.menu=0;render()};
+function hi(n){if(!S.threads[n]){S.threads[n]=[[S.me,'Hi']];reply(n)}S.tab='chat';S.chat=n;render()}
+function reply(n){setTimeout(()=>{if(S.blocked.has(n))return;S.threads[n].push([n,lines[Math.floor(Math.random()*lines.length)]]);render()},1000)}
 function send(){const i=$('#m'),v=i.value.trim();if(!v)return;
- if(bad(v))return toast('Contact details and links are blocked.');
- if(v.length>500)return toast('Max 500 characters.');
- const l=S.room?S.room.msgs:S.dms[S.dm];l.push([S.me,v]);say(l,S.dm);render()}
-const pick=n=>{if(n!==S.me){S.sel=n;render()}};
-const addf=n=>{S.friends.add(n);S.sel=null;toast(n+' added (demo: auto-accepted).')};
-const blk=n=>{S.blocked.add(n);S.friends.delete(n);S.sel=null;toast(n+' blocked.')};
-const rep=n=>{S.sel=null;toast('Report sent for '+n+'.')};
-const dm=n=>{S.dm=n;S.dms[n]=S.dms[n]||[];S.sel=null;render()};
-function claim(){if(S.claimed)return toast('Already claimed today.');S.claimed=true;S.coins+=5;toast('+5 coins');}
-function msgs(l){return l.filter(m=>!S.blocked.has(m[0])).map(m=>`<div class="msg ${m[0]==S.me?'me':''}"><b onclick="pick('${esc(m[0])}')">${esc(m[0])}</b><div>${esc(m[1])}</div></div>`).join('')||'<p class="mut">No messages yet. Say hello.</p>'}
-function sheet(){if(!S.sel)return'';const n=esc(S.sel);return`<div class="card"><b>${n}</b><div class="row" style="margin-top:8px"><button class="sec" onclick="addf('${n}')">Add friend</button><button class="sec" onclick="rep('${n}')">Report</button><button class="sec" onclick="blk('${n}')">Block</button></div></div>`}
-function view(){
- if(S.room){const r=S.room;return[r.name,`<p class="mut">${esc(r.topic)} - ${esc(r.lang)} - ${r.n} people</p><div class="row"><button class="sec" disabled>Voice (coming soon)</button><button class="sec" disabled>Translate (coming soon)</button></div>${sheet()}${msgs(r.msgs)}`,1,1]}
- if(S.dm)return[S.dm,sheet()+msgs(S.dms[S.dm]),1,1];
- if(S.tab=='friends')return['Friends',[...S.friends].filter(f=>!S.blocked.has(f)).map(f=>`<div class="card row"><b>${esc(f)}</b><button class="sec" onclick="dm('${esc(f)}')">Message</button></div>`).join('')||'<p class="mut">No friends yet. Tap a name in a room to add one.</p>'];
- if(S.tab=='me')return['You',`<div class="card"><h3>${esc(S.me)}</h3><small>Coins</small><div style="font-size:28px;font-weight:700;color:var(--gold)">${S.coins}</div><p><button class="pri" onclick="claim()">Claim daily coins</button></p><small>Demo only: no real payments.</small></div><div class="card"><h3>Safety</h3><small>18+ only. Contact details and links are blocked in chat. Report or block anyone from a room.</small></div><p><button class="sec" onclick="S.me=null;render()">Sign out</button></p>`];
- return['Rooms',`<div class="row"><input id="rn" placeholder="Name a new room" maxlength="40"><button class="pri" onclick="mk()">Create</button></div>`+S.rooms.map(r=>`<div class="card"><h3>${esc(r.name)}</h3><small>${esc(r.topic)} - ${esc(r.lang)} - ${r.n} people</small><p style="margin:8px 0 0"><button class="pri" onclick="openRoom(${r.id})">Join</button></p></div>`).join('')]}
-function render(){const A=$('#app');
- if(!S.me){A.innerHTML=`<header><span>Ember</span></header><main><h2>Meet people in live chat rooms</h2><p class="mut">Join a room or make your own. Open to adults 18+ worldwide.</p><p><input id="n" placeholder="Display name" maxlength="40"></p><p><small>Date of birth</small><input id="d" type="date"></p><p><button class="pri" onclick="start()">Continue</button></p><p id="e" class="err"></p><small>Demo: sample people are fictional and nothing is saved.</small></main>`;return}
- const[t,h,back,chat]=view();
- A.innerHTML=(S.t?`<div class="toast">${esc(S.t)}</div>`:'')+`<header>${back?'<button onclick="S.room=null;S.dm=null;S.sel=null;render()">Back</button>':''}<span>${esc(t)}</span></header><main>${h}</main>`+
- (chat?`<div class="bar"><input id="m" placeholder="Message" maxlength="500" onkeydown="if(event.key=='Enter')send()"><button class="pri" onclick="send()">Send</button></div>`:`<nav>${['rooms','friends','me'].map(x=>`<button class="${S.tab==x?'on':''}" onclick="go('${x}')">${x[0].toUpperCase()+x.slice(1)}</button>`).join('')}</nav>`);
- const m=$('#m');if(m)m.focus();window.scrollTo(0,document.body.scrollHeight)}
+ if(bad(v))return toast('Phone numbers, emails and links are blocked.');
+ S.threads[S.chat].push([S.me,v]);reply(S.chat);render()}
+const fol=n=>{S.follow.has(n)?S.follow.delete(n):S.follow.add(n);render()};
+const blk=n=>{S.blocked.add(n);S.follow.delete(n);S.chat=null;S.menu=0;toast(n+' blocked.')};
+const rep=n=>{S.menu=0;toast('Report sent for '+n+'.')};
+function post(){const v=$('#p').value.trim();if(!v)return;if(bad(v))return toast('Phone numbers, emails and links are blocked.');
+ S.mo.unshift({n:S.me,t:v,l:0,k:0});render()}
+const like=i=>{const m=S.mo[i];m.k=!m.k;m.l+=m.k?1:-1;render()};
+const T=[['ci','Daily check-in',5,()=>1],['po','Post a moment',3,()=>S.mo.some(m=>m.n==S.me)],['fo','Follow 3 people',4,()=>S.follow.size>=3]];
+function claim(k){const t=T.find(x=>x[0]==k);if(S.done.has(k))return toast('Already claimed.');if(!t[3]())return toast('Finish the task first.');S.done.add(k);S.coins+=t[2];toast('+'+t[2]+' coins')}
+const av=p=>`<div class="av">${p.e}${p.on?'<i></i>':''}</div>`;
+function home(){let l=P.filter(p=>!S.blocked.has(p.n));if(S.h=='new')l=l.slice(4);if(S.h=='on')l=l.filter(p=>p.on);
+ return`<div class="tiles"><button class="t y" onclick="toast('Voice chat is coming soon.')">Voice Chat</button><button class="t p" onclick="go('me')">Tasks</button><button class="t g" onclick="toast('Invites need real accounts.')">Invite</button></div>
+<div class="tabs">${[['rec','Recommended'],['new','Newcomers'],['on','Online']].map(([k,t])=>`<button class="${S.h==k?'on':''}" onclick="S.h='${k}';render()">${t}</button>`).join('')}</div>`+
+ l.map(p=>`<div class="pc">${av(p)}<div class="pi"><b>${p.n}</b> <small>${p.a} - ${p.c}</small><div class="mut">${p.b}</div></div><div class="col"><button class="hi" onclick="hi('${p.n}')">Hi</button><button class="fo" onclick="fol('${p.n}')">${S.follow.has(p.n)?'Following':'Follow'}</button></div></div>`).join('')}
+function moment(){return`<h1>Moments</h1><div class="row"><input id="p" placeholder="Share something (300 max)" maxlength="300"><button class="pri" onclick="post()">Post</button></div>`+
+ S.mo.map((m,i)=>S.blocked.has(m.n)?'':`<div class="card"><b>${esc(m.n)}</b><div>${esc(m.t)}</div><button class="sec" onclick="like(${i})">${m.k?'Liked':'Like'} ${m.l}</button></div>`).join('')}
+function chats(){const k=Object.keys(S.threads).filter(n=>!S.blocked.has(n));
+ return`<h1>Chat</h1>`+(k.map(n=>{const p=P.find(x=>x.n==n),l=S.threads[n].slice(-1)[0];return`<div class="pc" onclick="S.chat='${n}';render()">${av(p)}<div class="pi"><b>${n}</b><div class="mut">${esc(l?l[1]:'')}</div></div></div>`}).join('')||'<p class="mut">No chats yet. Tap Hi on someone in Home.</p>')}
+function thread(){const n=S.chat;return`<div class="top"><button onclick="S.chat=null;S.menu=0;render()">Back</button><span class="grow">${esc(n)}</span><button onclick="S.menu=!S.menu;render()">More</button></div><main>${S.menu?`<div class="row"><button class="sec" onclick="rep('${n}')">Report</button><button class="sec" onclick="blk('${n}')">Block</button></div>`:''}`+
+ S.threads[n].map(m=>`<div class="msg ${m[0]==S.me?'me':''}"><span>${esc(m[1])}</span></div>`).join('')+`</main><div class="bar"><input id="m" placeholder="Message" maxlength="500" onkeydown="if(event.key=='Enter')send()"><button class="pri" onclick="send()">Send</button></div>`}
+function me(){return`<div class="row" style="margin-top:8px"><div class="av">🙂</div><div><h2 style="margin:0">${esc(S.me)}</h2><small>Level ${1+S.done.size}</small></div></div>
+<div class="stats"><div>0<small>Friends</small></div><div>${S.follow.size}<small>Following</small></div><div>0<small>Followers</small></div></div>
+<div class="coin">${S.coins} coins</div><h2 style="margin-top:16px">Tasks</h2>`+
+ T.map(t=>`<div class="card row"><div class="grow"><b>${t[1]}</b><br><small>+${t[2]} coins${S.done.has(t[0])?' - claimed':''}</small></div><button class="hi" onclick="claim('${t[0]}')">Claim</button></div>`).join('')+
+ `<h2 style="margin-top:16px">Store</h2>`+[[100,'$0.99'],[500,'$3.99'],[1200,'$8.99']].map(p=>`<div class="card row"><div class="grow"><b>${p[0]} coins</b></div><button class="sec" onclick="toast('Demo: payments are not connected.')">${p[1]}</button></div>`).join('')+
+ `<p><small>18+ only. Contact details and links are blocked in chat. Demo: sample people are fictional and nothing is saved.</small></p><button class="sec" onclick="S.me=null;render()">Sign out</button>`}
+function render(){const A=$('#app'),T0=S.t?`<div class="toast">${esc(S.t)}</div>`:'';
+ if(!S.me){A.innerHTML=`<main><h1 style="font-size:34px;margin-top:40px">Ember</h1><p class="mut">Meet people worldwide. Say Hi, chat, make friends. Adults 18+ only.</p><p><input id="n" placeholder="Display name" maxlength="40"></p><p><small>Date of birth</small><input id="d" type="date"></p><p><button class="pri" onclick="start()">Continue</button></p><p id="e" class="err"></p></main>`;return}
+ if(S.chat){A.innerHTML=T0+thread();const m=$('#m');if(m)m.focus();window.scrollTo(0,document.body.scrollHeight);return}
+ const v={home,moment,chat:chats,me}[S.tab]();
+ A.innerHTML=T0+`<main>${v}</main><nav>${[['home','Home'],['moment','Moment'],['chat','Chat'],['me','Me']].map(([k,t])=>`<button class="${S.tab==k?'on':''}" onclick="go('${k}')">${t}</button>`).join('')}</nav>`}
 render();
 </script></body></html>
